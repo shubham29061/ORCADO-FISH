@@ -60,6 +60,16 @@
         margin-top: 10px;
         color: green;
     }
+        .logo-box {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.logo-box img {
+    width: 120px;
+    display: inline-block;
+}
+
 </style>
 
 </head>
@@ -68,53 +78,53 @@
 
 <div class="container">
 
-    <!-- LOGO START -->
-    <div style="text-align:center; margin-bottom:15px;">
-    <img src="logo.png" alt="Orcado Fish Logo" width="120">
-</div>
-    <!-- LOGO END -->
+    <!-- LOGO -->
+    <div class="logo-box">
+        <img src="logo.png" alt="Orcado Fish Logo">
+    </div>
 
     <h2>Orcado Fish</h2>
 
     <form id="boatForm">
 
+        <label>Boat Name</label>
+        <input type="text" id="boatName" required>
 
-    Boat Name:
-    <input type="text" id="boatName" required>
+        <label>Location</label>
+        <input type="text" id="location" required>
 
-    Location:
-    <input type="text" id="location" required>
+        <label>Boat Owner Name</label>
+        <input type="text" id="ownerName" required>
 
-    Boat Owner Name:
-    <input type="text" id="ownerName" required>
+        <label>Boat Registration Number</label>
+        <input type="text" id="registrationNumber" required>
 
-    Boat Registration Number:
-    <input type="text" id="registrationNumber" required>
+        <label>Mobile No</label>
+        <input type="tel" id="mobile" required>
 
-    Mobile No:
-    <input type="tel" id="mobile" required>
+        <label>Email ID</label>
+        <input type="email" id="email" required>
 
-    Email ID:
-    <input type="email" id="email" required>
+        <label>Subscription Active</label>
+        <select id="subscriptionActive" required>
+            <option value="">Select</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
 
-    Subscription Active:
-    <select id="subscriptionActive" required>
-        <option value="">Select</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
+        <label>Subscription Finish Date</label>
+        <input type="date" id="finishDate">
 
-    Subscription Finish Date:
-    <input type="date" id="finishDate">
+        <label>Wireless No</label>
+        <input type="text" id="wirelessNo">
 
-    Wireless No:
-    <input type="text" id="wirelessNo">
+        <button type="submit">Submit</button>
 
-    <br><br>
-    <button type="submit">Submit</button>
+        <p id="status"></p>
+    </form>
 
-    <p id="status"></p>
-</form>
+
+
 
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -160,6 +170,7 @@
 
 </body>
 </div>
+
 
 
 
