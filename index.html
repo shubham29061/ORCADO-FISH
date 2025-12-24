@@ -3,41 +3,73 @@
 <head>
     <title>Orcado Fish</title>
     <style>
-        body {
-    font-family: Arial;
-    background-color: #b3e5fc; /* Ocean light blue */
-    padding: 20px;
-}
-        <div style="text-align:center; margin-bottom:20px;">
-    <img src="logo.png" alt="Orcado Fish Logo" width="120">
-</div>
+    body {
+        font-family: Arial;
+        background-color: #b3e5fc; /* ocean light blue */
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+    }
 
-        form {
-            background: white;
-            padding: 20px;
-            max-width: 500px;
-            margin: auto;
-            border-radius: 8px;
-        }
-        input, select, button {
-            width: 100%;
-            padding: 8px;
-            margin-top: 8px;
-        }
-        button {
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-    </style>
+    .container {
+        background: white;
+        padding: 25px;
+        width: 100%;
+        max-width: 500px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+        display: block;
+        margin-top: 10px;
+    }
+
+    input, select, button {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    button {
+        margin-top: 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    #status {
+        text-align: center;
+        margin-top: 10px;
+        color: green;
+    }
+</style>
+
 </head>
 
 <body>
 
-<h2 align="center">Orcado Fish</h2>
+<div class="container">
+    <h2>Orcado Fish</h2>
 
-<form id="boatForm">
+    <form id="boatForm">
 
     Boat Name:
     <input type="text" id="boatName" required>
@@ -119,7 +151,8 @@
 </script>
 
 </body>
-</html>
+</div>
+
 
 
 
