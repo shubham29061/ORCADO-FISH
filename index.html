@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boat Subscription Details</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+        form {
+            background: white;
+            padding: 20px;
+            max-width: 500px;
+            margin: auto;
+            border-radius: 8px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 8px;
+        }
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2 align="center">Boat Subscription Form</h2>
+
+<form id="boatForm">
+
+    Boat Name:
+    <input type="text" id="boatName" required>
+
+    Location:
+    <input type="text" id="location" required>
+
+    Boat Owner Name:
+    <input type="text" id="ownerName" required>
+
+    Boat Registration Number:
+    <input type="text" id="registrationNumber" required>
+
+    Mobile No:
+    <input type="tel" id="mobile" required>
+
+    Email ID:
+    <input type="email" id="email" required>
+
+    Subscription Active:
+    <select id="subscriptionActive" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
+
+    Subscription Finish Date:
+    <input type="date" id="finishDate">
+
+    Wireless No:
+    <input type="text" id="wirelessNo">
+
+    <br><br>
+    <button type="submit">Submit</button>
+
+    <p id="status"></p>
+</form>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+<script>
+    // 🔴 PASTE YOUR FIREBASE CONFIG HERE
+    const firebaseConfig = {
+    apiKey: "AIzaSyBgHSbR6Q_za_uSjxpNwfPGh2xx4QSYpEY",
+    authDomain: "orcadofish.firebaseapp.com",
+    databaseURL: "https://orcadofish-default-rtdb.firebaseio.com",
+    projectId: "orcadofish",
+    storageBucket: "orcadofish.firebasestorage.app",
+    messagingSenderId: "138005449504",
+    appId: "1:138005449504:web:897c9d263541ec1a926545",
+    measurementId: "G-3QR55DB06K"
+  };
+
+
+    firebase.initializeApp(firebaseConfig);
+
+    var database = firebase.database();
+
+    document.getElementById("boatForm").addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        database.ref("boats").push({
+            boatName: document.getElementById("boatName").value,
+            location: document.getElementById("location").value,
+            ownerName: document.getElementById("ownerName").value,
+            registrationNumber: document.getElementById("registrationNumber").value,
+            mobile: document.getElementById("mobile").value,
+            email: document.getElementById("email").value,
+            subscriptionActive: document.getElementById("subscriptionActive").value,
+            finishDate: document.getElementById("finishDate").value,
+            wirelessNo: document.getElementById("wirelessNo").value
+        });
+
+        document.getElementById("status").innerHTML = "✅ Data Saved Successfully";
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
