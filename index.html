@@ -149,27 +149,59 @@
     var database = firebase.database();
 
     document.getElementById("boatForm").addEventListener("submit", function(e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        database.ref("boats").push({
-            boatName: document.getElementById("boatName").value,
-            location: document.getElementById("location").value,
-            ownerName: document.getElementById("ownerName").value,
-            registrationNumber: document.getElementById("registrationNumber").value,
-            mobile: document.getElementById("mobile").value,
-            email: document.getElementById("email").value,
-            subscriptionActive: document.getElementById("subscriptionActive").value,
-            finishDate: document.getElementById("finishDate").value,
-            wirelessNo: document.getElementById("wirelessNo").value
-        });
+    // Get values
+    const boatName = document.getElementById("boatName").value.trim();
+    const location = document.getElementById("location").value.trim();
+    const ownerName = document.getElementById("ownerName").value.trim();
+    const registrationNumber = document.getElementById("registrationNumber").value.trim();
+    const mobile = document.getElementById("mobile").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const subscriptionActive = document.getElementById("subscriptionActive").value;
+    const finishDate = document.getElementById("finishDate").value;
+    const wirelessNo = document.getElementById("wirelessNo").value.trim();
 
-        document.getElementById("status").innerHTML = "✅ Data Saved Successfully";
-        this.reset();
+    // ✅ CHECK: All fields mandatory
+    if (
+        !boatName ||
+        !location ||
+        !ownerName ||
+        !registrationNumber ||
+        !mobile ||
+        !email ||
+        !subscriptionActive ||
+        !finishDate ||
+        !wirelessNo
+    ) {
+        document.getElementById("status").style.color = "red";
+        document.getElementById("status").innerHTML = "❌ Please fill ALL fields before submitting";
+        return; // ⛔ STOP here — data NOT saved
+    }
+
+    // ✅ Save to Firebase only if all fields are filled
+    database.ref("boats").push({
+        boatName,
+        location,
+        ownerName,
+        registrationNumber,
+        mobile,
+        email,
+        subscriptionActive,
+        finishDate,
+        wirelessNo
     });
+
+    document.getElementById("status").style.color = "green";
+    document.getElementById("status").innerHTML = "✅ Data Saved Successfully";
+    this.reset();
+});
+
 </script>
 
 </body>
 </div>
+
 
 
 
