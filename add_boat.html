@@ -1,46 +1,103 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Add Boat</title>
-  <link rel="stylesheet" href="style.css">
+<title>Add Boat — Orcado Fish</title>
+
+<style>
+body{font-family:Poppins,Arial;background:#021b2c;color:white;margin:0}
+.container{max-width:520px;margin:40px auto;background:#04284a;padding:20px;border-radius:14px}
+label{margin-top:10px;display:block}
+input,select,button{width:100%;padding:9px;border-radius:8px;border:1px solid #4a6a85;margin-top:5px}
+button{background:#1e88ff;color:white;border:none;cursor:pointer}
+button:hover{background:#0c6be0}
+nav{padding:15px 40px;background:#032545}
+nav a{color:#9fd4ff;margin-right:15px;text-decoration:none}
+nav a:hover{color:#fff}
+#status{margin-top:8px}
+</style>
 </head>
 
 <body>
 
 <nav>
-  <img src="logo.png">
-  <div>
-    <a href="index.html">Home</a>
-    <a href="add-boat.html">Add Boat</a>
-    <a href="view-boats.html">View Boats</a>
-  </div>
+  <a href="index.html">Home</a>
+  <a href="add-boat.html">Add Boat</a>
+  <a href="view-boats.html">View Boats</a>
 </nav>
 
-<section class="section">
-  <h2>Add Boat</h2>
+<div class="container">
 
-  <form id="boatForm">
+<h2>Add Boat Details</h2>
 
-    <input id="boatName" placeholder="Boat Name" required>
-    <input id="location" placeholder="Location" required>
-    <input id="ownerName" placeholder="Boat Owner Name">
-    <input id="regNumber" placeholder="Boat Registration Number">
-    <input id="mobile" placeholder="Mobile Number">
-    <input id="email" placeholder="Email ID">
+<form id="boatForm">
 
-    <select id="subscription">
-      <option value="Active">Active</option>
-      <option value="Expired">Expired</option>
-    </select>
+<label>Boat Name</label>
+<input id="boatName" required>
 
-    <button type="submit">Save Boat</button>
+<label>Location</label>
+<input id="location" required>
 
-  </form>
-</section>
+<label>Owner Name</label>
+<input id="ownerName" required>
 
-<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"></script>
-<script src="app.js"></script>
+<label>Registration Number</label>
+<input id="registrationNumber" required>
+
+<label>Mobile</label>
+<input id="mobile" required>
+
+<label>Email</label>
+<input id="email" type="email" required>
+
+<label>Subscription Active</label>
+<select id="subscriptionActive" required>
+  <option value="">Select</option>
+  <option value="Yes">Yes</option>
+  <option value="No">No</option>
+</select>
+
+<label>Finish Date</label>
+<input type="date" id="finishDate" required>
+
+<label>Wireless No</label>
+<input id="wirelessNo" required>
+
+<button type="submit">Save Boat</button>
+<p id="status"></p>
+
+</form>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="firebase-config.js"></script>
+
+<script>
+boatForm.addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const b={
+    boatName:boatName.value.trim(),
+    location:location.value.trim(),
+    ownerName:ownerName.value.trim(),
+    registrationNumber:registrationNumber.value.trim(),
+    mobile:mobile.value.trim(),
+    email:email.value.trim(),
+    subscriptionActive:subscriptionActive.value,
+    finishDate:finishDate.value,
+    wirelessNo:wirelessNo.value.trim()
+  };
+
+  for(const k in b){ if(!b[k]){ status.style.color="red"; status.innerHTML="Fill all fields"; return; } }
+
+  database.ref("boats").push(b);
+
+  status.style.color="lightgreen";
+  status.innerHTML="Boat saved successfully ✔️";
+  this.reset();
+});
+</script>
 
 </body>
 </html>
