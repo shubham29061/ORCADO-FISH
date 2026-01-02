@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Boat — Orcado Fish</title>
-<meta name="viewport" content="width=device-width">
-<link rel="stylesheet" href="styles.css">
-
-<style>
-body{margin:0;font-family:Poppins,Arial;background:#021b33;color:#d9e8ff}
-nav{display:flex;justify-content:space-between;padding:16px 60px;background:#032b52;border-bottom:1px solid #0c4f87}
-nav a{color:#cfe4ff;margin-left:22px;text-decoration:none;font-weight:600}
-nav a:hover{color:#6ab8ff}
-.container{padding:40px 12%}
-.card{background:#082444;border:1px solid #0d4a80;border-radius:14px;padding:22px}
-input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #1c5fa3;background:#031a36;color:#d9e8ff}
-button{padding:12px 18px;border:none;background:#0f6bff;border-radius:10px;font-weight:700;color:#fff}
-button:hover{background:#3f8dff}
-</style>
+  <title>Add Boat</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <nav>
-  <div style="font-size:22px;font-weight:700;">Orcado Fish</div>
+  <img src="logo.png">
   <div>
     <a href="index.html">Home</a>
     <a href="add-boat.html">Add Boat</a>
@@ -29,85 +16,31 @@ button:hover{background:#3f8dff}
   </div>
 </nav>
 
-<div class="container">
-<h2>Add Boat</h2>
+<section class="section">
+  <h2>Add Boat</h2>
 
-<div class="card">
-<form id="boatForm">
+  <form id="boatForm">
 
-<label>Boat Name</label>
-<input id="boatName" required>
+    <input id="boatName" placeholder="Boat Name" required>
+    <input id="location" placeholder="Location" required>
+    <input id="ownerName" placeholder="Boat Owner Name">
+    <input id="regNumber" placeholder="Boat Registration Number">
+    <input id="mobile" placeholder="Mobile Number">
+    <input id="email" placeholder="Email ID">
 
-<label>Location</label>
-<input id="location">
+    <select id="subscription">
+      <option value="Active">Active</option>
+      <option value="Expired">Expired</option>
+    </select>
 
-<label>Boat Owner Name</label>
-<input id="ownerName">
+    <button type="submit">Save Boat</button>
 
-<label>Boat Registration Number</label>
-<input id="registrationNumber">
+  </form>
+</section>
 
-<label>Mobile</label>
-<input id="mobile">
-
-<label>Email</label>
-<input id="email" type="email">
-
-<label>Subscription Status</label>
-<select id="subscription">
-  <option value="">Select</option>
-  <option value="Active">Active</option>
-  <option value="Expired">Expired</option>
-</select>
-
-<br><br>
-<button type="submit">Save Boat</button>
-<p id="status"></p>
-</form>
-</div>
-</div>
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
-
-<script>
-// 🔹 YOUR FIREBASE CONFIG (same across pages)
-const firebaseConfig = {
-  apiKey:"",
-  authDomain:"",
-  projectId:"",
-  storageBucket:"",
-  messagingSenderId:"",
-  appId:""
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-
-const form = document.getElementById("boatForm");
-const statusMsg = document.getElementById("status");
-
-form.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-
-  await db.collection("boats").add({
-    boatName: boatName.value.trim(),
-    ownerName: ownerName.value.trim(),
-    location: location.value.trim(),
-    registrationNumber: registrationNumber.value.trim(),
-    mobile: mobile.value.trim(),
-    email: email.value.trim(),
-    subscription: subscription.value,
-    createdAt: new Date()
-  });
-
-  statusMsg.style.color="#4cff9a";
-  statusMsg.innerHTML="✔ Boat Saved Successfully";
-
-  form.reset();
-});
-</script>
+<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"></script>
+<script src="app.js"></script>
 
 </body>
 </html>
