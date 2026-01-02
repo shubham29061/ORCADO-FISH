@@ -1,103 +1,195 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Add Boat — Orcado Fish</title>
+  <title>Add Boat — Orcado Fish</title>
 
-<style>
-body{font-family:Poppins,Arial;background:#021b2c;color:white;margin:0}
-.container{max-width:520px;margin:40px auto;background:#04284a;padding:20px;border-radius:14px}
-label{margin-top:10px;display:block}
-input,select,button{width:100%;padding:9px;border-radius:8px;border:1px solid #4a6a85;margin-top:5px}
-button{background:#1e88ff;color:white;border:none;cursor:pointer}
-button:hover{background:#0c6be0}
-nav{padding:15px 40px;background:#032545}
-nav a{color:#9fd4ff;margin-right:15px;text-decoration:none}
-nav a:hover{color:#fff}
-#status{margin-top:8px}
-</style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== General ===== */
+    body {
+      font-family: Poppins, Arial, sans-serif;
+      background: #f5faff;
+      color: #1f2937;
+      margin: 0;
+    }
+
+    /* ===== Navigation ===== */
+    nav {
+      padding: 15px 40px;
+      background: #e6f2ff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    nav a {
+      color: #1d4ed8;
+      margin-right: 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #2563eb;
+    }
+
+    /* ===== Container ===== */
+    .container {
+      max-width: 520px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      color: #1e40af;
+      margin-bottom: 20px;
+    }
+
+    /* ===== Form ===== */
+    label {
+      margin-top: 12px;
+      display: block;
+      font-weight: 500;
+      color: #334155;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #cbd5e1;
+      margin-top: 6px;
+      font-family: Poppins;
+      font-size: 14px;
+      background: #ffffff;
+      color: #1f2937;
+      box-sizing: border-box;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 18px;
+      border-radius: 8px;
+      background: #3b82f6;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #2563eb;
+    }
+
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      font-weight: 500;
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
-  <a href="index.html">Home</a>
-  <a href="add-boat.html">Add Boat</a>
-  <a href="view-boats.html">View Boats</a>
-</nav>
+  <!-- ===== Navigation ===== -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="add-boat.html">Add Boat</a>
+    <a href="view-boats.html">View Boats</a>
+  </nav>
 
-<div class="container">
+  <!-- ===== Form Container ===== -->
+  <div class="container">
 
-<h2>Add Boat Details</h2>
+    <h2>Add Boat Details</h2>
 
-<form id="boatForm">
+    <form id="boatForm">
 
-<label>Boat Name</label>
-<input id="boatName" required>
+      <label>Boat Name</label>
+      <input id="boatName" required>
 
-<label>Location</label>
-<input id="location" required>
+      <label>Location</label>
+      <input id="location" required>
 
-<label>Owner Name</label>
-<input id="ownerName" required>
+      <label>Owner Name</label>
+      <input id="ownerName" required>
 
-<label>Registration Number</label>
-<input id="registrationNumber" required>
+      <label>Registration Number</label>
+      <input id="registrationNumber" required>
 
-<label>Mobile</label>
-<input id="mobile" required>
+      <label>Mobile</label>
+      <input id="mobile" required>
 
-<label>Email</label>
-<input id="email" type="email" required>
+      <label>Email</label>
+      <input id="email" type="email" required>
 
-<label>Subscription Active</label>
-<select id="subscriptionActive" required>
-  <option value="">Select</option>
-  <option value="Yes">Yes</option>
-  <option value="No">No</option>
-</select>
+      <label>Subscription Active</label>
+      <select id="subscriptionActive" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
 
-<label>Finish Date</label>
-<input type="date" id="finishDate" required>
+      <label>Finish Date</label>
+      <input type="date" id="finishDate" required>
 
-<label>Wireless No</label>
-<input id="wirelessNo" required>
+      <label>Wireless No</label>
+      <input id="wirelessNo" required>
 
-<button type="submit">Save Boat</button>
-<p id="status"></p>
+      <button type="submit">Save Boat</button>
+      <p id="status"></p>
 
-</form>
-</div>
+    </form>
+  </div>
 
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-<script src="firebase-config.js"></script>
+  <!-- ===== Firebase ===== -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <script src="firebase-config.js"></script>
 
-<script>
-boatForm.addEventListener("submit",function(e){
-  e.preventDefault();
+  <script>
+    boatForm.addEventListener("submit", function(e) {
+      e.preventDefault();
 
-  const b={
-    boatName:boatName.value.trim(),
-    location:location.value.trim(),
-    ownerName:ownerName.value.trim(),
-    registrationNumber:registrationNumber.value.trim(),
-    mobile:mobile.value.trim(),
-    email:email.value.trim(),
-    subscriptionActive:subscriptionActive.value,
-    finishDate:finishDate.value,
-    wirelessNo:wirelessNo.value.trim()
-  };
+      const b = {
+        boatName: boatName.value.trim(),
+        location: location.value.trim(),
+        ownerName: ownerName.value.trim(),
+        registrationNumber: registrationNumber.value.trim(),
+        mobile: mobile.value.trim(),
+        email: email.value.trim(),
+        subscriptionActive: subscriptionActive.value,
+        finishDate: finishDate.value,
+        wirelessNo: wirelessNo.value.trim()
+      };
 
-  for(const k in b){ if(!b[k]){ status.style.color="red"; status.innerHTML="Fill all fields"; return; } }
+      for (const k in b) {
+        if (!b[k]) {
+          status.style.color = "red";
+          status.innerHTML = "Please fill all fields";
+          return;
+        }
+      }
 
-  database.ref("boats").push(b);
+      database.ref("boats").push(b);
 
-  status.style.color="lightgreen";
-  status.innerHTML="Boat saved successfully ✔️";
-  this.reset();
-});
-</script>
+      status.style.color = "green";
+      status.innerHTML = "Boat saved successfully ✔️";
+      this.reset();
+    });
+  </script>
 
 </body>
 </html>
