@@ -1,128 +1,210 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Orcado Fish</title>
-    <style>
-    body {
-        font-family: Arial;
-        background-color: #b3e5fc; /* ocean light blue */
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 0;
-    }
+<title>Orcado Fish</title>
 
-    .container {
-        background: white;
-        padding: 25px;
-        width: 100%;
-        max-width: 500px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
+<style>
+body {
+    font-family: Arial;
+    background-color: #b3e5fc;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
 
-    h2 {
-        text-align: center;
-        margin-bottom: 20px;
-    }
+.container {
+    background: white;
+    padding: 25px;
+    width: 100%;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
 
-    label {
-        font-weight: bold;
-        display: block;
-        margin-top: 10px;
-    }
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
 
-    input, select, button {
-        width: 100%;
-        padding: 10px;
-        margin-top: 5px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
 
-    button {
-        margin-top: 20px;
-        background-color: #007BFF;
-        color: white;
-        border: none;
-        cursor: pointer;
-        font-size: 16px;
-    }
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
 
-    button:hover {
-        background-color: #0056b3;
-    }
+button {
+    margin-top: 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
 
-    #status {
-        text-align: center;
-        margin-top: 10px;
-        color: green;
-    }
-        .logo-box {
+button:hover {
+    background-color: #0056b3;
+}
+
+#status {
+    text-align: center;
+    margin-top: 10px;
+    color: green;
+}
+
+/* logo */
+.logo-box {
     text-align: center;
     margin-bottom: 15px;
 }
 
 .logo-box img {
     width: 120px;
-    display: inline-block;
 }
 
-</style>
+/* View Data Section */
+.table-box {
+    margin-top: 25px;
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 10px;
+}
 
+.table-box h3 {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#searchBox {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 6px;
+    border: 1px solid #888;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+th, td {
+    border: 1px solid #aaa;
+    padding: 6px;
+    text-align: left;
+}
+
+th {
+    background: #1976d2;
+    color: white;
+}
+
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-weight: bold;
+}
+
+.active {
+    background:#c8f7c5;
+    color:#1b5e20;
+}
+
+.expired {
+    background:#ffcdd2;
+    color:#b71c1c;
+}
+</style>
 </head>
+
 
 <body>
 
 <div class="container">
 
-    <!-- LOGO -->
-    <div class="logo-box">
-        <img src="logo.png" alt="Orcado Fish Logo">
-    </div>
+<!-- LOGO -->
+<div class="logo-box">
+    <img src="logo.png" alt="Orcado Fish Logo">
+</div>
 
-    <h2>Orcado Fish</h2>
+<h2>Orcado Fish — Add Boat</h2>
 
-    <form id="boatForm">
+<form id="boatForm">
 
-        <label>Boat Name</label>
-        <input type="text" id="boatName" required>
+    <label>Boat Name</label>
+    <input type="text" id="boatName" required>
 
-        <label>Location</label>
-        <input type="text" id="location" required>
+    <label>Location</label>
+    <input type="text" id="location" required>
 
-        <label>Boat Owner Name</label>
-        <input type="text" id="ownerName" required>
+    <label>Boat Owner Name</label>
+    <input type="text" id="ownerName" required>
 
-        <label>Boat Registration Number</label>
-        <input type="text" id="registrationNumber" required>
+    <label>Boat Registration Number</label>
+    <input type="text" id="registrationNumber" required>
 
-        <label>Mobile No</label>
-        <input type="tel" id="mobile" required>
+    <label>Mobile No</label>
+    <input type="tel" id="mobile" required>
 
-        <label>Email ID</label>
-        <input type="email" id="email" required>
+    <label>Email ID</label>
+    <input type="email" id="email" required>
 
-        <label>Subscription Active</label>
-        <select id="subscriptionActive" required>
-            <option value="">Select</option>
-            <option value="Yes">Yes</option>
-            <option value="No">No</option>
-        </select>
+    <label>Subscription Active</label>
+    <select id="subscriptionActive" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+    </select>
 
-        <label>Subscription Finish Date</label>
-        <input type="date" id="finishDate">
+    <label>Subscription Finish Date</label>
+    <input type="date" id="finishDate">
 
-        <label>Wireless No</label>
-        <input type="text" id="wirelessNo">
+    <label>Wireless No</label>
+    <input type="text" id="wirelessNo">
 
-        <button type="submit">Submit</button>
+    <button type="submit">Submit</button>
 
-        <p id="status"></p>
-    </form>
+    <p id="status"></p>
+</form>
 
+
+
+<!-- 🔹 VIEW DATA SECTION -->
+<div class="table-box">
+
+  <h3>View Boat Data</h3>
+
+  <input type="text" id="searchBox" placeholder="Search boats, owner, location...">
+
+  <button onclick="exportTableToExcel('boatTable','boats_data')">
+    Export to Excel
+  </button>
+
+  <table id="boatTable">
+      <thead>
+          <tr>
+              <th>Boat Name</th>
+              <th>Owner</th>
+              <th>Location</th>
+              <th>Mobile</th>
+              <th>Subscription</th>
+              <th>Expiry</th>
+          </tr>
+      </thead>
+      <tbody></tbody>
+  </table>
+</div>
 
 
 
@@ -130,9 +212,13 @@
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
+<!-- Excel Export Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+
 <script>
-    
-    const firebaseConfig = {
+
+const firebaseConfig = {
     apiKey: "AIzaSyBgHSbR6Q_za_uSjxpNwfPGh2xx4QSYpEY",
     authDomain: "orcadofish.firebaseapp.com",
     databaseURL: "https://orcadofish-default-rtdb.firebaseio.com",
@@ -141,72 +227,139 @@
     messagingSenderId: "138005449504",
     appId: "1:138005449504:web:897c9d263541ec1a926545",
     measurementId: "G-3QR55DB06K"
-  };
+};
+
+firebase.initializeApp(firebaseConfig);
+var database = firebase.database();
 
 
-    firebase.initializeApp(firebaseConfig);
-
-    var database = firebase.database();
-
-    document.getElementById("boatForm").addEventListener("submit", function(e) {
+// 🔹 SAVE DATA
+document.getElementById("boatForm").addEventListener("submit", function(e) {
     e.preventDefault();
 
-    // Get values
-    const boatName = document.getElementById("boatName").value.trim();
-    const location = document.getElementById("location").value.trim();
-    const ownerName = document.getElementById("ownerName").value.trim();
-    const registrationNumber = document.getElementById("registrationNumber").value.trim();
-    const mobile = document.getElementById("mobile").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const subscriptionActive = document.getElementById("subscriptionActive").value;
-    const finishDate = document.getElementById("finishDate").value;
-    const wirelessNo = document.getElementById("wirelessNo").value.trim();
+    const data = {
+        boatName: boatName.value.trim(),
+        location: location.value.trim(),
+        ownerName: ownerName.value.trim(),
+        registrationNumber: registrationNumber.value.trim(),
+        mobile: mobile.value.trim(),
+        email: email.value.trim(),
+        subscriptionActive: subscriptionActive.value,
+        finishDate: finishDate.value,
+        wirelessNo: wirelessNo.value.trim()
+    };
 
-    // ✅ CHECK: All fields mandatory
-    if (
-        !boatName ||
-        !location ||
-        !ownerName ||
-        !registrationNumber ||
-        !mobile ||
-        !email ||
-        !subscriptionActive ||
-        !finishDate ||
-        !wirelessNo
-    ) {
-        document.getElementById("status").style.color = "red";
-        document.getElementById("status").innerHTML = "❌ Please fill ALL fields before submitting";
-        return; // ⛔ STOP here — data NOT saved
+    // validation
+    for (const v in data) if (!data[v]) {
+        status.style.color = "red";
+        status.innerHTML = "❌ Please fill ALL fields";
+        return;
     }
 
-    // ✅ Save to Firebase only if all fields are filled
-    database.ref("boats").push({
-        boatName,
-        location,
-        ownerName,
-        registrationNumber,
-        mobile,
-        email,
-        subscriptionActive,
-        finishDate,
-        wirelessNo
-    });
+    database.ref("boats").push(data);
 
-    document.getElementById("status").style.color = "green";
-    document.getElementById("status").innerHTML = "✅ Data Saved Successfully";
+    status.style.color = "green";
+    status.innerHTML = "✅ Data Saved Successfully";
     this.reset();
 });
 
+
+
+// =========================
+// 🔹 VIEW DATA FUNCTIONS
+// =========================
+
+const tableBody = document.querySelector("#boatTable tbody");
+const searchBox = document.getElementById("searchBox");
+
+let boatsData = [];
+
+function getSubscriptionStatus(dateStr){
+    if(!dateStr) return "Expired";
+
+    const today = new Date();
+    const exp = new Date(dateStr);
+
+    return exp >= today ? "Active" : "Expired";
+}
+
+
+// 🔹 LOAD DATA
+database.ref("boats").on("value", snapshot => {
+
+    boatsData = [];
+    tableBody.innerHTML = "";
+
+    snapshot.forEach(child => {
+        const b = child.val();
+        boatsData.push(b);
+    });
+
+    renderTable(boatsData);
+});
+
+
+// 🔹 RENDER TABLE
+function renderTable(data){
+
+    tableBody.innerHTML = "";
+
+    data.forEach(b => {
+
+        const status = getSubscriptionStatus(b.finishDate);
+
+        const row = `
+        <tr>
+            <td>${b.boatName}</td>
+            <td>${b.ownerName}</td>
+            <td>${b.location}</td>
+            <td>${b.mobile}</td>
+
+            <td>
+              <span class="status-badge ${status === 'Active' ? 'active':'expired'}">
+                ${status}
+              </span>
+            </td>
+
+            <td>${b.finishDate || "-"}</td>
+        </tr>`;
+
+        tableBody.innerHTML += row;
+    });
+}
+
+
+
+// 🔍 LIVE SEARCH FILTER
+searchBox.addEventListener("keyup", function(){
+
+    const q = this.value.toLowerCase();
+
+    const filtered = boatsData.filter(b =>
+        (b.boatName || "").toLowerCase().includes(q) ||
+        (b.ownerName || "").toLowerCase().includes(q) ||
+        (b.location || "").toLowerCase().includes(q) ||
+        (b.mobile || "").toLowerCase().includes(q)
+    );
+
+    renderTable(filtered);
+});
+
+
+
+// 📤 EXPORT TO EXCEL
+function exportTableToExcel(tableID, filename="boats_data") {
+
+    const wb = XLSX.utils.table_to_book(
+        document.getElementById(tableID)
+    );
+
+    XLSX.writeFile(wb, filename + ".xlsx");
+}
+
 </script>
 
-</body>
 </div>
-
-
-
-
-
-
-
-
+</body>
+</html>
 
