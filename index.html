@@ -1,395 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Orcado Fish</title>
+<title>Orcado Fish — Precision Fishing</title>
+<meta name="viewport" content="width=device-width">
 
 <style>
-body{
-    margin:0;
-    font-family:Arial;
-    background:#b3e5fc;
-}
-
-/* NAVBAR */
-.navbar{
-    background:#0d47a1;
-    padding:12px;
-    text-align:center;
-}
-.navbar a{
-    color:white;
-    text-decoration:none;
-    font-weight:bold;
-    margin:0 15px;
-    padding:8px 14px;
-    border-radius:8px;
-}
-.navbar a.active,
-.navbar a:hover{
-    background:white;
-    color:#0d47a1;
-}
-
-/* Section Wrapper */
-.section{
-    display:none;
-    max-width:900px;
-    margin:25px auto;
-    background:white;
-    padding:25px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
-
-h2,h3{
-    text-align:center;
-    margin-top:0;
-}
-
-.logo-box{
-    text-align:center;
-}
-.logo-box img{
-    width:130px;
-}
-
-/* Form fields */
-label{font-weight:bold;display:block;margin-top:10px;}
-input,select,textarea,button{
-    width:100%;
-    padding:10px;
-    margin-top:5px;
-    border-radius:6px;
-    border:1px solid #bbb;
-}
-button{
-    background:#007bff;
-    color:white;
-    border:none;
-    cursor:pointer;
-}
-button:hover{background:#0056b3;}
-
-.status-badge{
-    padding:4px 8px;
-    border-radius:6px;
-    font-weight:bold;
-}
-.active{background:#c8f7c5;color:#1b5e20;}
-.expired{background:#ffcdd2;color:#b71c1c;}
-
-/* Table */
-#searchBox{padding:8px;margin-bottom:10px;}
-table{width:100%;border-collapse:collapse;font-size:13px;}
-th,td{border:1px solid #bbb;padding:6px;}
-th{background:#1976d2;color:white;}
+body{margin:0;font-family:Poppins,Arial;background:#021b33;color:#d9e8ff}
+nav{display:flex;justify-content:space-between;padding:16px 60px;background:#032b52;border-bottom:1px solid #0c4f87}
+nav a{color:#cfe4ff;margin-left:22px;text-decoration:none;font-weight:600}
+nav a:hover{color:#6ab8ff}
+.section{padding:70px 12%}
+.hero{font-size:36px;font-weight:800}
+.card{background:#082444;border:1px solid #0d4a80;border-radius:14px;padding:22px;margin:14px 0;transition:.3s}
+.card:hover{transform:translateY(-3px);box-shadow:0 0 18px rgba(70,144,255,.25)}
+button{padding:12px 18px;border-radius:10px;border:none;background:#0f6bff;color:#fff;font-weight:700;cursor:pointer}
+button:hover{background:#3f8dff}
+input,textarea{width:100%;padding:14px;border-radius:10px;border:1px solid #1c5fa3;background:#031a36;color:#d9e8ff}
+.fade{animation:fade .8s ease-in-out}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 </style>
 </head>
 
+<body class="fade">
 
-<body>
+<nav>
+  <div style="font-size:22px;font-weight:700;">Orcado Fish</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="add-boat.html">Add Boat</a>
+    <a href="view-boats.html">View Boats</a>
+  </div>
+</nav>
 
-<!-- 🔹 NAVIGATION BAR -->
-<div class="navbar">
-  <a href="#add" id="tabAdd" onclick="showTab('add')">Add Boat</a>
-  <a href="#view" id="tabView" onclick="showTab('view')">View Boats</a>
-  <a href="#contact" id="tabContact" onclick="showTab('contact')">Contact</a>
+<div class="section">
+  <div class="hero">Precision Fishing, Powered by Science.</div>
+  <p>Navigating the deep using real-time satellite data and N8FISH insights to bring the freshest catch from ocean to plate.</p>
 </div>
 
+<div class="section">
+  <h2>How We Work</h2>
 
+  <div class="card"><b>Smart Scouting</b><br>
+  We target PFZ using thermal imaging & chlorophyll maps — reducing fuel waste & protecting the ocean.</div>
 
-<!-- ========== TAB 1 : ADD BOAT ========== -->
-<div id="sectionAdd" class="section">
+  <div class="card"><b>Real-Time Oceanics</b><br>
+  Our fleet monitors SST & wind currents for safe operations & premium harvest quality.</div>
 
-<div class="logo-box">
- <img src="logo.png">
+  <div class="card"><b>Sustainable Tech</b><br>
+  N8FISH data eliminates blind-fishing — efficient & environmentally responsible.</div>
 </div>
 
-<h2>Orcado Fish — Add Boat</h2>
+<div class="section">
+  <h2>The Catch</h2>
 
-<form id="boatForm">
+  <div class="card"><b>Traceable Origins</b><br>
+  Know the GPS catch-point to cold-chain handling at dock.</div>
 
-<label>Boat Name</label>
-<input id="boatName" required>
-
-<label>Location</label>
-<input id="location" required>
-
-<label>Boat Owner Name</label>
-<input id="ownerName" required>
-
-<label>Boat Registration Number</label>
-<input id="registrationNumber" required>
-
-<label>Mobile No</label>
-<input id="mobile" required>
-
-<label>Email ID</label>
-<input id="email" type="email" required>
-
-<label>Subscription Active</label>
-<select id="subscriptionActive" required>
- <option value="">Select</option>
- <option value="Yes">Yes</option>
- <option value="No">No</option>
-</select>
-
-<label>Subscription Finish Date</label>
-<input type="date" id="finishDate">
-
-<label>Wireless No</label>
-<input id="wirelessNo">
-
-<button type="submit">Save Boat</button>
-
-<p id="status"></p>
-</form>
+  <div class="card"><b>Wild & Fresh</b><br>
+  Harvested from nutrient-rich thermal fronts where the ocean is most alive.</div>
 </div>
 
-
-
-<!-- ========== TAB 2 : VIEW BOATS ========== -->
-<div id="sectionView" class="section">
-
-<h3>Boat Records — Search / Export</h3>
-
-<input id="searchBox" placeholder="Search boat / owner / location / mobile">
-
-<button onclick="exportTableToExcel('boatTable','boats_data')">
- Export to Excel
-</button>
-
-<table id="boatTable">
-<thead>
-<tr>
- <th>Boat</th>
- <th>Owner</th>
- <th>Location</th>
- <th>Mobile</th>
- <th>Status</th>
- <th>Expiry</th>
-</tr>
-</thead>
-<tbody></tbody>
-</table>
-
+<div class="section">
+  <h2>Contact Us</h2>
+  <div class="card">
+    <form>
+      <input placeholder="Your Name">
+      <br><br>
+      <input placeholder="Email">
+      <br><br>
+      <textarea rows="4" placeholder="Message"></textarea>
+      <br><br>
+      <button type="button">Send Message</button>
+    </form>
+  </div>
 </div>
-
-
-
-<!-- ========== TAB 3 : CONTACT FORM ========== -->
-<div id="sectionContact" class="section">
-
-<h3>Contact Support</h3>
-
-<form id="contactForm">
-
-<label>Your Name</label>
-<input id="cname" required>
-
-<label>Email</label>
-<input id="cemail" type="email" required>
-
-<label>Message</label>
-<textarea id="cmsg" rows="4" required></textarea>
-
-<button type="submit">Submit Message</button>
-
-<p id="contactStatus"></p>
-</form>
-
-</div>
-
-
-
-<!-- Firebase -->
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-<!-- Excel Export -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-
-
-<script>
-/* =========================
-   NAVIGATION TAB SWITCHING
-========================= */
-function showTab(tab){
-
-  document.getElementById("sectionAdd").style.display = "none";
-  document.getElementById("sectionView").style.display = "none";
-  document.getElementById("sectionContact").style.display = "none";
-
-  document.getElementById("tabAdd").classList.remove("active");
-  document.getElementById("tabView").classList.remove("active");
-  document.getElementById("tabContact").classList.remove("active");
-
-  if(tab==="add"){
-    document.getElementById("sectionAdd").style.display="block";
-    document.getElementById("tabAdd").classList.add("active");
-  }
-  if(tab==="view"){
-    document.getElementById("sectionView").style.display="block";
-    document.getElementById("tabView").classList.add("active");
-  }
-  if(tab==="contact"){
-    document.getElementById("sectionContact").style.display="block";
-    document.getElementById("tabContact").classList.add("active");
-  }
-}
-
-// default tab
-showTab("add");
-
-
-
-/* =========================
-   FIREBASE CONFIG
-========================= */
-const firebaseConfig = {
- apiKey: "AIzaSyBgHSbR6Q_za_uSjxpNwfPGh2xx4QSYpEY",
- authDomain: "orcadofish.firebaseapp.com",
- databaseURL: "https://orcadofish-default-rtdb.firebaseio.com",
- projectId: "orcadofish",
- storageBucket: "orcadofish.firebasestorage.app",
- messagingSenderId: "138005449504",
- appId: "1:138005449504:web:897c9d263541ec1a926545"
-};
-
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-
-
-/* =========================
-   SAVE BOAT DATA
-========================= */
-boatForm.addEventListener("submit",e=>{
- e.preventDefault();
-
- const data={
-  boatName:boatName.value.trim(),
-  location:location.value.trim(),
-  ownerName:ownerName.value.trim(),
-  registrationNumber:registrationNumber.value.trim(),
-  mobile:mobile.value.trim(),
-  email:email.value.trim(),
-  subscriptionActive:subscriptionActive.value,
-  finishDate:finishDate.value,
-  wirelessNo:wirelessNo.value.trim()
- };
-
- for(const k in data) if(!data[k]){
-  status.style.color="red";
-  status.innerHTML="❌ Fill all fields";
-  return;
- }
-
- db.ref("boats").push(data);
-
- status.style.color="green";
- status.innerHTML="✅ Boat Added Successfully";
-
- boatForm.reset();
-});
-
-
-
-/* =========================
-   VIEW BOATS + STATUS
-========================= */
-const tbody=document.querySelector("#boatTable tbody");
-let boats=[];
-
-function getStatus(dateStr){
- if(!dateStr) return "Expired";
- return new Date(dateStr)>=new Date() ? "Active":"Expired";
-}
-
-db.ref("boats").on("value",snap=>{
- boats=[];
- tbody.innerHTML="";
-
- snap.forEach(c=>boats.push(c.val()));
- renderTable(boats);
-});
-
-function renderTable(list){
-
- tbody.innerHTML="";
-
- list.forEach(b=>{
-
- const status=getStatus(b.finishDate);
-
- tbody.innerHTML+=`
-<tr>
- <td>${b.boatName}</td>
- <td>${b.ownerName}</td>
- <td>${b.location}</td>
- <td>${b.mobile}</td>
- <td>
-  <span class="status-badge ${status==='Active'?'active':'expired'}">
-   ${status}
-  </span>
- </td>
- <td>${b.finishDate||"-"}</td>
-</tr>`;
- });
-}
-
-
-
-/* =========================
-   SEARCH FILTER
-========================= */
-searchBox.addEventListener("keyup",e=>{
-
- const q=e.target.value.toLowerCase();
-
- const filtered=boats.filter(b=>
-  (b.boatName||"").toLowerCase().includes(q) ||
-  (b.ownerName||"").toLowerCase().includes(q) ||
-  (b.location||"").toLowerCase().includes(q) ||
-  (b.mobile||"").toLowerCase().includes(q)
- );
-
- renderTable(filtered);
-});
-
-
-
-/* =========================
-   EXPORT TO EXCEL
-========================= */
-function exportTableToExcel(id,name="boats_data"){
- const wb=XLSX.utils.table_to_book(document.getElementById(id));
- XLSX.writeFile(wb,name+".xlsx");
-}
-
-
-
-/* =========================
-   CONTACT FORM SAVE
-========================= */
-contactForm.addEventListener("submit",e=>{
- e.preventDefault();
-
- const msg={
-  name:cname.value.trim(),
-  email:cemail.value.trim(),
-  message:cmsg.value.trim(),
-  time:new Date().toISOString()
- };
-
- db.ref("contact_messages").push(msg);
-
- contactStatus.style.color="green";
- contactStatus.innerHTML="✅ Message Sent";
-
- contactForm.reset();
-});
-</script>
 
 </body>
 </html>
