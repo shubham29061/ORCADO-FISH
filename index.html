@@ -4,189 +4,199 @@
 <title>Orcado Fish</title>
 
 <style>
-body {
-    font-family: Arial;
-    background-color: #b3e5fc;
-    margin: 0;
+body{
+    margin:0;
+    font-family:Arial;
+    background:#b3e5fc;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#0d47a1;
+    padding:12px;
+    text-align:center;
+}
+.navbar a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    margin:0 15px;
+    padding:8px 14px;
+    border-radius:8px;
+}
+.navbar a.active,
+.navbar a:hover{
+    background:white;
+    color:#0d47a1;
 }
 
 /* Section Wrapper */
-.section {
-    max-width: 900px;
-    margin: 25px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+.section{
+    display:none;
+    max-width:900px;
+    margin:25px auto;
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 
-/* Headings */
-h2, h3 {
-    text-align: center;
-    margin-top: 0;
+h2,h3{
+    text-align:center;
+    margin-top:0;
 }
 
-/* Logo */
-.logo-box {
-    text-align: center;
-    margin-bottom: 10px;
+.logo-box{
+    text-align:center;
 }
-.logo-box img {
-    width: 130px;
+.logo-box img{
+    width:130px;
 }
 
-/* Form Styles */
-label {
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
+/* Form fields */
+label{font-weight:bold;display:block;margin-top:10px;}
+input,select,textarea,button{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border-radius:6px;
+    border:1px solid #bbb;
 }
-input, select, button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-button {
-    margin-top: 15px;
+button{
     background:#007bff;
     color:white;
     border:none;
     cursor:pointer;
 }
-button:hover {
-    background:#0056b3;
-}
-#status {
-    text-align:center;
-    margin-top:8px;
-}
+button:hover{background:#0056b3;}
 
-/* TABLE SECTION */
-.table-controls {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+.status-badge{
+    padding:4px 8px;
+    border-radius:6px;
+    font-weight:bold;
 }
-#searchBox {
-    flex: 1;
-    padding: 8px;
-    border-radius: 6px;
-    border: 1px solid #666;
-}
+.active{background:#c8f7c5;color:#1b5e20;}
+.expired{background:#ffcdd2;color:#b71c1c;}
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-}
-th, td {
-    border: 1px solid #bbb;
-    padding: 6px;
-}
-th {
-    background:#1976d2;
-    color:white;
-}
-
-/* STATUS BADGES */
-.status-badge {
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-weight: bold;
-}
-.active {
-    background:#c8f7c5;
-    color:#1b5e20;
-}
-.expired {
-    background:#ffcdd2;
-    color:#b71c1c;
-}
+/* Table */
+#searchBox{padding:8px;margin-bottom:10px;}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{border:1px solid #bbb;padding:6px;}
+th{background:#1976d2;color:white;}
 </style>
 </head>
 
 
 <body>
 
+<!-- 🔹 NAVIGATION BAR -->
+<div class="navbar">
+  <a href="#add" id="tabAdd" onclick="showTab('add')">Add Boat</a>
+  <a href="#view" id="tabView" onclick="showTab('view')">View Boats</a>
+  <a href="#contact" id="tabContact" onclick="showTab('contact')">Contact</a>
+</div>
 
-<!-- ========== SECTION 1 : ADD BOAT ========== -->
-<div class="section">
+
+
+<!-- ========== TAB 1 : ADD BOAT ========== -->
+<div id="sectionAdd" class="section">
 
 <div class="logo-box">
-    <img src="logo.png">
+ <img src="logo.png">
 </div>
 
 <h2>Orcado Fish — Add Boat</h2>
 
 <form id="boatForm">
 
-    <label>Boat Name</label>
-    <input type="text" id="boatName" required>
+<label>Boat Name</label>
+<input id="boatName" required>
 
-    <label>Location</label>
-    <input type="text" id="location" required>
+<label>Location</label>
+<input id="location" required>
 
-    <label>Boat Owner Name</label>
-    <input type="text" id="ownerName" required>
+<label>Boat Owner Name</label>
+<input id="ownerName" required>
 
-    <label>Boat Registration Number</label>
-    <input type="text" id="registrationNumber" required>
+<label>Boat Registration Number</label>
+<input id="registrationNumber" required>
 
-    <label>Mobile No</label>
-    <input type="tel" id="mobile" required>
+<label>Mobile No</label>
+<input id="mobile" required>
 
-    <label>Email ID</label>
-    <input type="email" id="email" required>
+<label>Email ID</label>
+<input id="email" type="email" required>
 
-    <label>Subscription Active</label>
-    <select id="subscriptionActive" required>
-        <option value="">Select</option>
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-    </select>
+<label>Subscription Active</label>
+<select id="subscriptionActive" required>
+ <option value="">Select</option>
+ <option value="Yes">Yes</option>
+ <option value="No">No</option>
+</select>
 
-    <label>Subscription Finish Date</label>
-    <input type="date" id="finishDate">
+<label>Subscription Finish Date</label>
+<input type="date" id="finishDate">
 
-    <label>Wireless No</label>
-    <input type="text" id="wirelessNo">
+<label>Wireless No</label>
+<input id="wirelessNo">
 
-    <button type="submit">Save Boat</button>
+<button type="submit">Save Boat</button>
 
-    <p id="status"></p>
+<p id="status"></p>
 </form>
 </div>
 
 
 
-<!-- ========== SECTION 2 : VIEW / SEARCH / EXPORT ========== -->
-<div class="section">
+<!-- ========== TAB 2 : VIEW BOATS ========== -->
+<div id="sectionView" class="section">
 
-<h3>Boat Records — View / Search / Export</h3>
+<h3>Boat Records — Search / Export</h3>
 
-<div class="table-controls">
-    <input id="searchBox" placeholder="Search boat / owner / location / mobile...">
-    <button onclick="exportTableToExcel('boatTable','boats_data')">
-        Export to Excel
-    </button>
-</div>
+<input id="searchBox" placeholder="Search boat / owner / location / mobile">
+
+<button onclick="exportTableToExcel('boatTable','boats_data')">
+ Export to Excel
+</button>
 
 <table id="boatTable">
-    <thead>
-        <tr>
-            <th>Boat</th>
-            <th>Owner</th>
-            <th>Location</th>
-            <th>Mobile</th>
-            <th>Subscription</th>
-            <th>Expiry</th>
-        </tr>
-    </thead>
-    <tbody></tbody>
+<thead>
+<tr>
+ <th>Boat</th>
+ <th>Owner</th>
+ <th>Location</th>
+ <th>Mobile</th>
+ <th>Status</th>
+ <th>Expiry</th>
+</tr>
+</thead>
+<tbody></tbody>
 </table>
+
+</div>
+
+
+
+<!-- ========== TAB 3 : CONTACT FORM ========== -->
+<div id="sectionContact" class="section">
+
+<h3>Contact Support</h3>
+
+<form id="contactForm">
+
+<label>Your Name</label>
+<input id="cname" required>
+
+<label>Email</label>
+<input id="cemail" type="email" required>
+
+<label>Message</label>
+<textarea id="cmsg" rows="4" required></textarea>
+
+<button type="submit">Submit Message</button>
+
+<p id="contactStatus"></p>
+</form>
 
 </div>
 
@@ -201,121 +211,184 @@ th {
 
 
 <script>
+/* =========================
+   NAVIGATION TAB SWITCHING
+========================= */
+function showTab(tab){
+
+  document.getElementById("sectionAdd").style.display = "none";
+  document.getElementById("sectionView").style.display = "none";
+  document.getElementById("sectionContact").style.display = "none";
+
+  document.getElementById("tabAdd").classList.remove("active");
+  document.getElementById("tabView").classList.remove("active");
+  document.getElementById("tabContact").classList.remove("active");
+
+  if(tab==="add"){
+    document.getElementById("sectionAdd").style.display="block";
+    document.getElementById("tabAdd").classList.add("active");
+  }
+  if(tab==="view"){
+    document.getElementById("sectionView").style.display="block";
+    document.getElementById("tabView").classList.add("active");
+  }
+  if(tab==="contact"){
+    document.getElementById("sectionContact").style.display="block";
+    document.getElementById("tabContact").classList.add("active");
+  }
+}
+
+// default tab
+showTab("add");
+
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
 const firebaseConfig = {
-    apiKey: "AIzaSyBgHSbR6Q_za_uSjxpNwfPGh2xx4QSYpEY",
-    authDomain: "orcadofish.firebaseapp.com",
-    databaseURL: "https://orcadofish-default-rtdb.firebaseio.com",
-    projectId: "orcadofish",
-    storageBucket: "orcadofish.firebasestorage.app",
-    messagingSenderId: "138005449504",
-    appId: "1:138005449504:web:897c9d263541ec1a926545"
+ apiKey: "AIzaSyBgHSbR6Q_za_uSjxpNwfPGh2xx4QSYpEY",
+ authDomain: "orcadofish.firebaseapp.com",
+ databaseURL: "https://orcadofish-default-rtdb.firebaseio.com",
+ projectId: "orcadofish",
+ storageBucket: "orcadofish.firebasestorage.app",
+ messagingSenderId: "138005449504",
+ appId: "1:138005449504:web:897c9d263541ec1a926545"
 };
 
 firebase.initializeApp(firebaseConfig);
-var database = firebase.database();
+const db = firebase.database();
 
 
-// SAVE DATA
-document.getElementById("boatForm").addEventListener("submit", e => {
-    e.preventDefault();
 
-    const data = {
-        boatName: boatName.value.trim(),
-        location: location.value.trim(),
-        ownerName: ownerName.value.trim(),
-        registrationNumber: registrationNumber.value.trim(),
-        mobile: mobile.value.trim(),
-        email: email.value.trim(),
-        subscriptionActive: subscriptionActive.value,
-        finishDate: finishDate.value,
-        wirelessNo: wirelessNo.value.trim()
-    };
+/* =========================
+   SAVE BOAT DATA
+========================= */
+boatForm.addEventListener("submit",e=>{
+ e.preventDefault();
 
-    for (const k in data) {
-        if (!data[k]) {
-            status.style.color = "red";
-            status.innerHTML = "❌ Please fill ALL fields";
-            return;
-        }
-    }
+ const data={
+  boatName:boatName.value.trim(),
+  location:location.value.trim(),
+  ownerName:ownerName.value.trim(),
+  registrationNumber:registrationNumber.value.trim(),
+  mobile:mobile.value.trim(),
+  email:email.value.trim(),
+  subscriptionActive:subscriptionActive.value,
+  finishDate:finishDate.value,
+  wirelessNo:wirelessNo.value.trim()
+ };
 
-    database.ref("boats").push(data);
+ for(const k in data) if(!data[k]){
+  status.style.color="red";
+  status.innerHTML="❌ Fill all fields";
+  return;
+ }
 
-    status.style.color = "green";
-    status.innerHTML = "✅ Boat Saved Successfully";
-    e.target.reset();
+ db.ref("boats").push(data);
+
+ status.style.color="green";
+ status.innerHTML="✅ Boat Added Successfully";
+
+ boatForm.reset();
 });
 
 
 
-// LOAD + DISPLAY DATA
-const tableBody = document.querySelector("#boatTable tbody");
-let boatsData = [];
+/* =========================
+   VIEW BOATS + STATUS
+========================= */
+const tbody=document.querySelector("#boatTable tbody");
+let boats=[];
 
-function getSubscriptionStatus(dateStr){
-    if (!dateStr) return "Expired";
-    return new Date(dateStr) >= new Date() ? "Active" : "Expired";
+function getStatus(dateStr){
+ if(!dateStr) return "Expired";
+ return new Date(dateStr)>=new Date() ? "Active":"Expired";
 }
 
-database.ref("boats").on("value", snap => {
+db.ref("boats").on("value",snap=>{
+ boats=[];
+ tbody.innerHTML="";
 
-    boatsData = [];
-    tableBody.innerHTML = "";
-
-    snap.forEach(child => boatsData.push(child.val()));
-
-    renderTable(boatsData);
+ snap.forEach(c=>boats.push(c.val()));
+ renderTable(boats);
 });
 
-function renderTable(data){
+function renderTable(list){
 
-    tableBody.innerHTML = "";
+ tbody.innerHTML="";
 
-    data.forEach(b => {
-        const status = getSubscriptionStatus(b.finishDate);
+ list.forEach(b=>{
 
-        tableBody.innerHTML += `
-        <tr>
-            <td>${b.boatName}</td>
-            <td>${b.ownerName}</td>
-            <td>${b.location}</td>
-            <td>${b.mobile}</td>
-            <td>
-                <span class="status-badge ${status === 'Active' ? 'active':'expired'}">
-                    ${status}
-                </span>
-            </td>
-            <td>${b.finishDate || "-"}</td>
-        </tr>`;
-    });
+ const status=getStatus(b.finishDate);
+
+ tbody.innerHTML+=`
+<tr>
+ <td>${b.boatName}</td>
+ <td>${b.ownerName}</td>
+ <td>${b.location}</td>
+ <td>${b.mobile}</td>
+ <td>
+  <span class="status-badge ${status==='Active'?'active':'expired'}">
+   ${status}
+  </span>
+ </td>
+ <td>${b.finishDate||"-"}</td>
+</tr>`;
+ });
 }
 
 
 
-// SEARCH FILTER
-searchBox.addEventListener("keyup", e => {
+/* =========================
+   SEARCH FILTER
+========================= */
+searchBox.addEventListener("keyup",e=>{
 
-    const q = e.target.value.toLowerCase();
+ const q=e.target.value.toLowerCase();
 
-    const filtered = boatsData.filter(b =>
-        (b.boatName||"").toLowerCase().includes(q) ||
-        (b.ownerName||"").toLowerCase().includes(q) ||
-        (b.location||"").toLowerCase().includes(q) ||
-        (b.mobile||"").toLowerCase().includes(q)
-    );
+ const filtered=boats.filter(b=>
+  (b.boatName||"").toLowerCase().includes(q) ||
+  (b.ownerName||"").toLowerCase().includes(q) ||
+  (b.location||"").toLowerCase().includes(q) ||
+  (b.mobile||"").toLowerCase().includes(q)
+ );
 
-    renderTable(filtered);
+ renderTable(filtered);
 });
 
 
 
-// EXPORT TO EXCEL
-function exportTableToExcel(tableID, filename="boats_data"){
-    const wb = XLSX.utils.table_to_book(
-        document.getElementById(tableID)
-    );
-    XLSX.writeFile(wb, filename + ".xlsx");
+/* =========================
+   EXPORT TO EXCEL
+========================= */
+function exportTableToExcel(id,name="boats_data"){
+ const wb=XLSX.utils.table_to_book(document.getElementById(id));
+ XLSX.writeFile(wb,name+".xlsx");
 }
+
+
+
+/* =========================
+   CONTACT FORM SAVE
+========================= */
+contactForm.addEventListener("submit",e=>{
+ e.preventDefault();
+
+ const msg={
+  name:cname.value.trim(),
+  email:cemail.value.trim(),
+  message:cmsg.value.trim(),
+  time:new Date().toISOString()
+ };
+
+ db.ref("contact_messages").push(msg);
+
+ contactStatus.style.color="green";
+ contactStatus.innerHTML="✅ Message Sent";
+
+ contactForm.reset();
+});
 </script>
 
 </body>
