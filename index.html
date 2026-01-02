@@ -1,14 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Orcado Fish</title>
-  <link rel="stylesheet" href="style.css">
+<title>Orcado Fish</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  font-family:Poppins,Arial;
+  background:#021b2c;
+  color:white;
+}
+
+nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:18px 50px;
+  background:#032545;
+  position:sticky;
+  top:0;
+}
+
+nav a{
+  color:#9fd4ff;
+  text-decoration:none;
+  margin-left:18px;
+  font-weight:500;
+}
+
+nav a:hover{ color:#ffffff; }
+
+.hero{
+  padding:90px 50px;
+  text-align:left;
+  background:linear-gradient(180deg,#022a48,#011423);
+}
+
+.logo{
+  width:130px;
+  margin-bottom:15px;
+}
+
+.hero h1{
+  font-size:38px;
+  margin:0 0 10px;
+}
+
+.section{
+  padding:60px 50px;
+  background:#03223c;
+  margin-top:12px;
+  border-radius:14px;
+}
+
+.card{
+  background:#053159;
+  padding:18px;
+  border-radius:12px;
+  margin-top:10px;
+}
+
+.contact-box{
+  background:#062c4c;
+  padding:25px;
+  border-radius:14px;
+  margin-top:20px;
+}
+
+input,textarea,button{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #4a6a85;
+  margin-top:6px;
+  font-family:Poppins;
+}
+
+button{
+  background:#1e88ff;
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+
+button:hover{ background:#0c6be0; }
+
+#contactStatus{ margin-top:8px; }
+
+footer{
+  text-align:center;
+  padding:25px;
+  color:#9ac8ff;
+}
+</style>
 </head>
 
 <body>
 
 <nav>
-  <img src="logo.png">
+  <div>
+    <img src="logo.png" class="logo">
+  </div>
+
   <div>
     <a href="index.html">Home</a>
     <a href="add-boat.html">Add Boat</a>
@@ -16,43 +111,97 @@
   </div>
 </nav>
 
-<section class="hero">
+<div class="hero">
   <h1>Precision Fishing, Powered by Science.</h1>
-  <p>Navigating the deep using real-time satellite data and N8FISH insights.</p>
-</section>
+  <p>Navigating the deep using real-time satellite data & N8FISH insights.</p>
+</div>
 
-<section class="section">
+<div class="section">
+  <h2>How We Work</h2>
+
   <div class="card">
-    <h2>Smart Scouting</h2>
-    <p>We target PFZ zones using thermal imaging & chlorophyll maps.</p>
+    <b>Smart Scouting</b><br>
+    We target PFZ using thermal + chlorophyll maps to reduce fuel waste.
   </div>
 
   <div class="card">
-    <h2>Real-Time Oceanics</h2>
-    <p>Monitoring SST & wind currents for safe operations.</p>
+    <b>Real-Time Oceanics</b><br>
+    SST & wind current monitoring ensures safer operations.
   </div>
 
   <div class="card">
-    <h2>Sustainable Tech</h2>
-    <p>We minimize blind fishing through N8FISH smart insights.</p>
+    <b>Sustainable Tech</b><br>
+    We minimize blind fishing using N8FISH data analytics.
+  </div>
+</div>
+
+<div class="section">
+  <h2>The Catch</h2>
+
+  <div class="card">
+    <b>Traceable Origins</b><br>
+    Every fish logged from GPS catch zone to dock.
   </div>
 
   <div class="card">
-    <h2>Traceable Origins</h2>
-    <p>Track your fish from GPS coordinates to cold-chain dock.</p>
+    <b>Wild & Fresh</b><br>
+    Sourced from nutrient-rich thermal fronts.
   </div>
-</section>
+</div>
 
-<section class="section">
+<div class="section">
   <h2>Contact Us</h2>
 
-  <form id="contactForm">
-    <input placeholder="Your Name">
-    <input placeholder="Email">
-    <textarea placeholder="Message"></textarea>
-    <button type="submit">Send</button>
-  </form>
-</section>
+  <div class="contact-box">
+    <form id="contactForm">
+
+      <label>Name</label>
+      <input type="text" id="cName" required>
+
+      <label>Email</label>
+      <input type="email" id="cEmail" required>
+
+      <label>Message</label>
+      <textarea id="cMessage" rows="4" required></textarea>
+
+      <button type="submit">Send Message</button>
+      <p id="contactStatus"></p>
+    </form>
+  </div>
+</div>
+
+<footer>© Orcado Fish</footer>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="firebase-config.js"></script>
+
+<script>
+document.getElementById("contactForm").addEventListener("submit",function(e){
+  e.preventDefault();
+
+  const msg={
+    name:cName.value.trim(),
+    email:cEmail.value.trim(),
+    message:cMessage.value.trim(),
+    time: Date.now()
+  };
+
+  if(!msg.name || !msg.email || !msg.message){
+    contactStatus.style.color="red";
+    contactStatus.innerHTML="Please fill all fields";
+    return;
+  }
+
+  database.ref("contacts").push(msg);
+
+  contactStatus.style.color="lightgreen";
+  contactStatus.innerHTML="Message sent successfully ✔️";
+
+  this.reset();
+});
+</script>
 
 </body>
 </html>
