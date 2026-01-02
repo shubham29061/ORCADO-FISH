@@ -6,122 +6,132 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
-    /* General Styles */
-    body{
-      margin:0;
-      font-family:Poppins, Arial, sans-serif;
-      background:#021b2c;
-      color:white;
+    /* ===== General Styles ===== */
+    body {
+      margin: 0;
+      font-family: Poppins, Arial, sans-serif;
+      background: #021b2c;
+      color: white;
     }
 
-    nav{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:18px 50px;
-      background:#032545;
-      position:sticky;
-      top:0;
-      z-index:100;
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 50px;
+      background: #032545;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
 
-    nav a{
-      color:#9fd4ff;
-      text-decoration:none;
-      margin-left:18px;
-      font-weight:500;
+    nav a {
+      color: #9fd4ff;
+      text-decoration: none;
+      margin-left: 18px;
+      font-weight: 500;
     }
 
-    nav a:hover{
-      color:#ffffff;
+    nav a:hover {
+      color: #ffffff;
     }
 
-    .hero{
-      padding:90px 50px;
-      text-align:left;
-      background:linear-gradient(180deg,#022a48,#011423);
+    .logo {
+      width: 130px;
+      margin-bottom: 15px;
     }
 
-    .logo{
-      width:130px;
-      margin-bottom:15px;
+    /* ===== Hero Section ===== */
+    .hero {
+      padding: 90px 20px;
+      text-align: left;
+      background: linear-gradient(180deg, #022a48, #011423);
+      max-width: 1000px;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
 
-    .hero h1{
-      font-size:38px;
-      margin:0 0 10px;
+    .hero h1 {
+      font-size: 38px;
+      margin: 0 0 10px;
     }
 
-    .section{
-      padding:60px 50px;
-      background:#03223c;
-      margin:12px 50px;
-      border-radius:14px;
+    /* ===== Sections ===== */
+    .section {
+      padding: 60px 20px;
+      background: #03223c;
+      margin: 12px auto;
+      border-radius: 14px;
+      max-width: 1000px;
+      box-sizing: border-box;
     }
 
-    .card{
-      background:#053159;
-      padding:18px;
-      border-radius:12px;
-      margin-top:10px;
+    .section h2 {
+      margin-bottom: 20px;
     }
 
-    /* Contact Form Styles */
-    .contact-box{
-      background:#062c4c;
-      padding:25px;
-      border-radius:14px;
-      margin:20px auto;       /* centers horizontally */
-      max-width:500px;        /* limits width */
-      box-shadow:0 4px 12px rgba(0,0,0,0.3);
+    .card {
+      background: #053159;
+      padding: 18px;
+      border-radius: 12px;
+      margin: 10px 0;
     }
 
-    input, textarea, button{
-      width:100%;
-      padding:12px;
-      border-radius:8px;
-      border:1px solid #4a6a85;
-      margin-top:8px;
-      font-family:Poppins;
-      box-sizing:border-box;
-      font-size:15px;
+    /* ===== Contact Form ===== */
+    .contact-box {
+      background: #062c4c;
+      padding: 25px;
+      border-radius: 14px;
+      margin: 20px auto;
+      max-width: 500px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-sizing: border-box;
     }
 
-    button{
-      background:#1e88ff;
-      color:white;
-      border:none;
-      cursor:pointer;
-      transition:0.3s;
+    input, textarea, button {
+      width: 100%;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #4a6a85;
+      margin-top: 8px;
+      font-family: Poppins;
+      box-sizing: border-box;
+      font-size: 15px;
     }
 
-    button:hover{
-      background:#0c6be0;
+    button {
+      background: #1e88ff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
     }
 
-    #contactStatus{
-      margin-top:8px;
-      font-weight:500;
+    button:hover {
+      background: #0c6be0;
     }
 
-    footer{
-      text-align:center;
-      padding:25px;
-      color:#9ac8ff;
+    #contactStatus {
+      margin-top: 8px;
+      font-weight: 500;
     }
 
-    /* Responsive Adjustments */
-    @media(max-width:600px){
-      nav{
-        flex-direction:column;
-        align-items:flex-start;
+    /* ===== Footer ===== */
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #9ac8ff;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
       }
-      .section{
-        margin:12px 20px;
-        padding:40px 20px;
-      }
-      .hero{
-        padding:70px 20px;
+
+      .hero, .section {
+        padding: 40px 20px;
       }
     }
   </style>
@@ -129,6 +139,7 @@
 
 <body>
 
+  <!-- ===== Navigation ===== -->
   <nav>
     <div>
       <img src="logo.png" class="logo" alt="Orcado Fish Logo">
@@ -141,11 +152,13 @@
     </div>
   </nav>
 
+  <!-- ===== Hero ===== -->
   <div class="hero">
     <h1>Precision Fishing, Powered by Science.</h1>
     <p>Navigating the deep using real-time satellite data & N8FISH insights.</p>
   </div>
 
+  <!-- ===== How We Work Section ===== -->
   <div class="section">
     <h2>How We Work</h2>
 
@@ -165,6 +178,7 @@
     </div>
   </div>
 
+  <!-- ===== The Catch Section ===== -->
   <div class="section">
     <h2>The Catch</h2>
 
@@ -179,6 +193,7 @@
     </div>
   </div>
 
+  <!-- ===== Contact Section ===== -->
   <div class="section">
     <h2>Contact Us</h2>
 
@@ -199,34 +214,35 @@
     </div>
   </div>
 
+  <!-- ===== Footer ===== -->
   <footer>© Orcado Fish</footer>
 
-  <!-- Firebase -->
+  <!-- ===== Firebase ===== -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="firebase-config.js"></script>
 
   <script>
-    document.getElementById("contactForm").addEventListener("submit",function(e){
+    document.getElementById("contactForm").addEventListener("submit", function(e){
       e.preventDefault();
 
-      const msg={
-        name:cName.value.trim(),
-        email:cEmail.value.trim(),
-        message:cMessage.value.trim(),
+      const msg = {
+        name: cName.value.trim(),
+        email: cEmail.value.trim(),
+        message: cMessage.value.trim(),
         time: Date.now()
       };
 
       if(!msg.name || !msg.email || !msg.message){
-        contactStatus.style.color="red";
-        contactStatus.innerHTML="Please fill all fields";
+        contactStatus.style.color = "red";
+        contactStatus.innerHTML = "Please fill all fields";
         return;
       }
 
       database.ref("contacts").push(msg);
 
-      contactStatus.style.color="lightgreen";
-      contactStatus.innerHTML="Message sent successfully ✔️";
+      contactStatus.style.color = "lightgreen";
+      contactStatus.innerHTML = "Message sent successfully ✔️";
 
       this.reset();
     });
