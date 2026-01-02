@@ -1,49 +1,130 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>View Boats</title>
-  <link rel="stylesheet" href="style.css">
+<title>View Boats — Orcado Fish</title>
+
+<style>
+body{font-family:Poppins,Arial;background:#021b2c;color:white;margin:0}
+nav{padding:15px 40px;background:#032545}
+nav a{color:#9fd4ff;margin-right:15px;text-decoration:none}
+nav a:hover{color:#fff}
+
+.container{max-width:900px;margin:25px auto;background:#04284a;padding:20px;border-radius:14px}
+input,button{padding:9px;border-radius:8px;border:1px solid #4a6a85}
+button{background:#1e88ff;color:white;border:none;cursor:pointer}
+button:hover{background:#0c6be0}
+
+table{width:100%;border-collapse:collapse;margin-top:10px}
+th,td{padding:8px;border:1px solid #365d7a}
+th{background:#063a68}
+
+.status{padding:4px 8px;border-radius:6px;font-weight:600}
+.active{background:#c8f7c5;color:#0b3f12}
+.expired{background:#ffcdd2;color:#5a0b0b}
+
+.pagination button{margin:5px}
+</style>
 </head>
 
 <body>
 
 <nav>
-  <img src="logo.png">
-  <div>
-    <a href="index.html">Home</a>
-    <a href="add-boat.html">Add Boat</a>
-    <a href="view-boats.html">View Boats</a>
-  </div>
+  <a href="index.html">Home</a>
+  <a href="add-boat.html">Add Boat</a>
+  <a href="view-boats.html">View Boats</a>
 </nav>
 
-<section class="section">
-  <h2>Boat Records</h2>
+<div class="container">
+<h2>Registered Boats</h2>
 
-  <input id="searchBox" placeholder="Search boat, location, owner...">
+<input id="searchBox" placeholder="Search boat / owner / location">
+<button onclick="exportExcel()">Export to Excel</button>
 
-  <button id="exportBtn">Export to Excel</button>
+<table id="boatTable">
+<thead>
+<tr>
+  <th>Boat</th>
+  <th>Owner</th>
+  <th>Location</th>
+  <th>Mobile</th>
+  <th>Status</th>
+  <th>Expiry</th>
+</tr>
+</thead>
+<tbody></tbody>
+</table>
 
-  <table>
-    <thead>
+<div class="pagination" id="pager"></div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+<script src="firebase-config.js"></script>
+
+<!-- XLSX Export -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script>
+let boats=[], page=1, size=7;
+
+function subStatus(date){
+  const d=new Date(date), t=new Date();
+  return d >= new Date(t.toDateString()) ? "Active" : "Expired";
+}
+
+database.ref("boats").on("value",snap=>{
+  boats=[];
+  snap.forEach(c=>boats.push(c.val()));
+  render();
+});
+
+searchBox.addEventListener("keyup",render);
+
+function render(){
+  const q=searchBox.value.toLowerCase();
+  const filtered=boats.filter(b =>
+    (b.boatName||"").toLowerCase().includes(q) ||
+    (b.ownerName||"").toLowerCase().includes(q) ||
+    (b.location||"").toLowerCase().includes(q)
+  );
+
+  const start=(page-1)*size;
+  const pageData=filtered.slice(start,start+size);
+
+  const body=document.querySelector("#boatTable tbody");
+  body.innerHTML="";
+
+  pageData.forEach(b=>{
+    const s=subStatus(b.finishDate);
+    body.innerHTML += `
       <tr>
-        <th>Boat</th>
-        <th>Owner</th>
-        <th>Location</th>
-        <th>Mobile</th>
-        <th>Status</th>
-      </tr>
-    </thead>
+        <td>${b.boatName}</td>
+        <td>${b.ownerName}</td>
+        <td>${b.location}</td>
+        <td>${b.mobile}</td>
+        <td><span class="status ${s=='Active'?'active':'expired'}">${s}</span></td>
+        <td>${b.finishDate}</td>
+      </tr>`;
+  });
 
-    <tbody id="boatTable"></tbody>
-  </table>
+  renderPager(filtered.length);
+}
 
-  <div class="pagination" id="pagination"></div>
+function renderPager(total){
+  const pages=Math.ceil(total/size);
+  const p=document.getElementById("pager");
+  p.innerHTML="";
+  for(let i=1;i<=pages;i++){
+    p.innerHTML+=`<button onclick="page=${i};render()">${i}</button>`;
+  }
+}
 
-</section>
-
-<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js"></script>
-<script src="app.js"></script>
+function exportExcel(){
+  const wb=XLSX.utils.table_to_book(document.getElementById("boatTable"));
+  XLSX.writeFile(wb,"boats_data.xlsx");
+}
+</script>
 
 </body>
 </html>
