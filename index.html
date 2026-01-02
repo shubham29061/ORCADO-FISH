@@ -6,12 +6,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ===== Animations ===== */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     /* ===== General Styles ===== */
     body {
       margin: 0;
       font-family: Poppins, Arial, sans-serif;
       background: #f5faff;
       color: #1f2937;
+      animation: fadeIn 0.8s ease-in;
     }
 
     /* ===== Top Navigation ===== */
@@ -25,6 +37,7 @@
       top: 0;
       z-index: 100;
       box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+      animation: fadeUp 0.6s ease-out;
     }
 
     nav a {
@@ -33,15 +46,32 @@
       margin-left: 12px;
       font-weight: 500;
       font-size: 14px;
-      transition: 0.3s;
+      position: relative;
+      transition: color 0.3s;
     }
 
-    nav a:hover {
-      color: #2563eb;
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      width: 0;
+      height: 2px;
+      background: #3b82f6;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     .logo {
       width: 40px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
     }
 
     /* ===== Hero Section ===== */
@@ -51,6 +81,7 @@
       max-width: 1000px;
       margin: 0 auto;
       box-sizing: border-box;
+      animation: fadeUp 0.8s ease-out;
     }
 
     .hero-title {
@@ -59,6 +90,7 @@
       font-weight: 700;
       margin-bottom: 20px;
       color: #1e3a8a;
+      animation: fadeUp 1s ease-out;
     }
 
     .hero p {
@@ -66,6 +98,7 @@
       font-size: 18px;
       margin-top: 0;
       color: #475569;
+      animation: fadeUp 1.2s ease-out;
     }
 
     /* ===== Sections ===== */
@@ -77,6 +110,7 @@
       max-width: 1000px;
       box-sizing: border-box;
       box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+      animation: fadeUp 0.9s ease-out;
     }
 
     .section h2 {
@@ -92,6 +126,12 @@
       margin: 10px 0;
       color: #334155;
       border-left: 5px solid #60a5fa;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
     }
 
     .card b {
@@ -107,6 +147,7 @@
       max-width: 500px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       box-sizing: border-box;
+      animation: fadeUp 1s ease-out;
     }
 
     input, textarea {
@@ -120,6 +161,13 @@
       font-size: 15px;
       background: #ffffff;
       color: #1f2937;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59,130,246,0.15);
     }
 
     button {
@@ -133,12 +181,13 @@
       color: #ffffff;
       border: none;
       cursor: pointer;
-      transition: 0.3s;
       font-weight: 500;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     button:hover {
-      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(59,130,246,0.35);
     }
 
     #contactStatus {
@@ -152,6 +201,7 @@
       text-align: center;
       padding: 25px;
       color: #64748b;
+      animation: fadeIn 1.2s ease-in;
     }
 
     /* ===== Responsive ===== */
@@ -256,7 +306,7 @@
   <!-- ===== Footer ===== -->
   <footer>© Orcado Fish</footer>
 
-  <!-- ===== Firebase ===== -->
+  <!-- ===== Firebase (UNCHANGED) ===== -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
   <script src="firebase-config.js"></script>
