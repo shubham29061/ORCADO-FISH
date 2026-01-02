@@ -1,29 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Orcado Fish — Precision Fishing</title>
-<meta name="viewport" content="width=device-width">
-
-<style>
-body{margin:0;font-family:Poppins,Arial;background:#021b33;color:#d9e8ff}
-nav{display:flex;justify-content:space-between;padding:16px 60px;background:#032b52;border-bottom:1px solid #0c4f87}
-nav a{color:#cfe4ff;margin-left:22px;text-decoration:none;font-weight:600}
-nav a:hover{color:#6ab8ff}
-.section{padding:70px 12%}
-.hero{font-size:36px;font-weight:800}
-.card{background:#082444;border:1px solid #0d4a80;border-radius:14px;padding:22px;margin:14px 0;transition:.3s}
-.card:hover{transform:translateY(-3px);box-shadow:0 0 18px rgba(70,144,255,.25)}
-button{padding:12px 18px;border-radius:10px;border:none;background:#0f6bff;color:#fff;font-weight:700;cursor:pointer}
-button:hover{background:#3f8dff}
-input,textarea{width:100%;padding:14px;border-radius:10px;border:1px solid #1c5fa3;background:#031a36;color:#d9e8ff}
-.fade{animation:fade .8s ease-in-out}@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-</style>
+  <title>Orcado Fish</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="fade">
+<body>
 
 <nav>
-  <div style="font-size:22px;font-weight:700;">Orcado Fish</div>
+  <img src="logo.png">
   <div>
     <a href="index.html">Home</a>
     <a href="add-boat.html">Add Boat</a>
@@ -31,48 +16,43 @@ input,textarea{width:100%;padding:14px;border-radius:10px;border:1px solid #1c5f
   </div>
 </nav>
 
-<div class="section">
-  <div class="hero">Precision Fishing, Powered by Science.</div>
-  <p>Navigating the deep using real-time satellite data and N8FISH insights to bring the freshest catch from ocean to plate.</p>
-</div>
+<section class="hero">
+  <h1>Precision Fishing, Powered by Science.</h1>
+  <p>Navigating the deep using real-time satellite data and N8FISH insights.</p>
+</section>
 
-<div class="section">
-  <h2>How We Work</h2>
-
-  <div class="card"><b>Smart Scouting</b><br>
-  We target PFZ using thermal imaging & chlorophyll maps — reducing fuel waste & protecting the ocean.</div>
-
-  <div class="card"><b>Real-Time Oceanics</b><br>
-  Our fleet monitors SST & wind currents for safe operations & premium harvest quality.</div>
-
-  <div class="card"><b>Sustainable Tech</b><br>
-  N8FISH data eliminates blind-fishing — efficient & environmentally responsible.</div>
-</div>
-
-<div class="section">
-  <h2>The Catch</h2>
-
-  <div class="card"><b>Traceable Origins</b><br>
-  Know the GPS catch-point to cold-chain handling at dock.</div>
-
-  <div class="card"><b>Wild & Fresh</b><br>
-  Harvested from nutrient-rich thermal fronts where the ocean is most alive.</div>
-</div>
-
-<div class="section">
-  <h2>Contact Us</h2>
+<section class="section">
   <div class="card">
-    <form>
-      <input placeholder="Your Name">
-      <br><br>
-      <input placeholder="Email">
-      <br><br>
-      <textarea rows="4" placeholder="Message"></textarea>
-      <br><br>
-      <button type="button">Send Message</button>
-    </form>
+    <h2>Smart Scouting</h2>
+    <p>We target PFZ zones using thermal imaging & chlorophyll maps.</p>
   </div>
-</div>
+
+  <div class="card">
+    <h2>Real-Time Oceanics</h2>
+    <p>Monitoring SST & wind currents for safe operations.</p>
+  </div>
+
+  <div class="card">
+    <h2>Sustainable Tech</h2>
+    <p>We minimize blind fishing through N8FISH smart insights.</p>
+  </div>
+
+  <div class="card">
+    <h2>Traceable Origins</h2>
+    <p>Track your fish from GPS coordinates to cold-chain dock.</p>
+  </div>
+</section>
+
+<section class="section">
+  <h2>Contact Us</h2>
+
+  <form id="contactForm">
+    <input placeholder="Your Name">
+    <input placeholder="Email">
+    <textarea placeholder="Message"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
 
 </body>
 </html>
