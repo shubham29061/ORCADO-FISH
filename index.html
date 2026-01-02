@@ -11,27 +11,28 @@
       margin: 0;
       font-family: Poppins, Arial, sans-serif;
       background: #021b2c;
-      color: white;
+      color: #e6f2ff;
     }
 
-    /* ===== Top Navigation (Slimmed) ===== */
+    /* ===== Top Navigation ===== */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 3px 20px; /* much slimmer vertical/horizontal padding */
-      background: #032545;
+      padding: 3px 20px;
+      background: #032d4a;
       position: sticky;
       top: 0;
       z-index: 100;
     }
 
     nav a {
-      color: #9fd4ff;
+      color: #4fd1c5;
       text-decoration: none;
-      margin-left: 12px; /* reduced spacing between links */
+      margin-left: 12px;
       font-weight: 500;
-      font-size: 14px; /* slightly smaller font for slim look */
+      font-size: 14px;
+      transition: 0.3s;
     }
 
     nav a:hover {
@@ -39,14 +40,14 @@
     }
 
     .logo {
-      width: 40px; /* smaller logo */
+      width: 40px;
       margin-bottom: 0;
     }
 
     /* ===== Hero Section ===== */
     .hero {
       padding: 90px 20px;
-      background: linear-gradient(180deg, #022a48, #011423);
+      background: linear-gradient(180deg, #023959, #011b2f);
       max-width: 1000px;
       margin: 0 auto;
       box-sizing: border-box;
@@ -57,20 +58,20 @@
       font-size: 42px;
       font-weight: 700;
       margin-bottom: 20px;
-      color: #ffffff;
+      color: #e6f2ff;
     }
 
     .hero p {
       text-align: center;
       font-size: 18px;
       margin-top: 0;
-      color: #cce4ff;
+      color: #a9c5d3;
     }
 
     /* ===== Sections ===== */
     .section {
       padding: 60px 20px;
-      background: #03223c;
+      background: #033b5c;
       margin: 12px auto;
       border-radius: 14px;
       max-width: 1000px;
@@ -80,23 +81,29 @@
     .section h2 {
       margin-bottom: 20px;
       text-align: center;
+      color: #e6f2ff;
     }
 
     .card {
-      background: #053159;
+      background: #044d7c;
       padding: 18px;
       border-radius: 12px;
       margin: 10px 0;
+      color: #a9c5d3;
+    }
+
+    .card b {
+      color: #e6f2ff;
     }
 
     /* ===== Contact Form ===== */
     .contact-box {
-      background: #062c4c;
+      background: #044b6e;
       padding: 25px;
       border-radius: 14px;
       margin: 20px auto;
       max-width: 500px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
       box-sizing: border-box;
     }
 
@@ -104,23 +111,26 @@
       width: 100%;
       padding: 12px;
       border-radius: 8px;
-      border: 1px solid #4a6a85;
+      border: 1px solid rgba(255,255,255,0.2);
       margin-top: 8px;
       font-family: Poppins;
       box-sizing: border-box;
       font-size: 15px;
+      background: #055d87;
+      color: #e6f2ff;
     }
 
     button {
-      background: #1e88ff;
-      color: white;
+      background: #4fd1c5;
+      color: #011b2f;
       border: none;
       cursor: pointer;
       transition: 0.3s;
+      font-weight: 500;
     }
 
     button:hover {
-      background: #0c6be0;
+      background: #38b2ac;
     }
 
     #contactStatus {
@@ -133,7 +143,7 @@
     footer {
       text-align: center;
       padding: 25px;
-      color: #9ac8ff;
+      color: #a9c5d3;
     }
 
     /* ===== Responsive ===== */
