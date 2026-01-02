@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>View Boats — Orcado Fish</title>
+<meta name="viewport" content="width=device-width">
+
+<style>
+body{margin:0;font-family:Poppins,Arial;background:#021b33;color:#d9e8ff}
+nav{display:flex;justify-content:space-between;padding:16px 60px;background:#032b52;border-bottom:1px solid #0c4f87}
+nav a{color:#cfe4ff;margin-left:22px;text-decoration:none;font-weight:600}
+nav a:hover{color:#6ab8ff}
+.container{padding:40px 12%}
+.card{background:#082444;border:1px solid #0d4a80;border-radius:14px;padding:22px}
+input,select{padding:10px;border-radius:10px;border:1px solid #1c5fa3;background:#031a36;color:#d9e8ff}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{padding:10px;border-bottom:1px solid #0b3d6e}
+.status{padding:6px 10px;border-radius:8px}
+.active{background:#0fa87a}
+.expired{background:#b23b3b}
+button{padding:10px 14px;border-radius:10px;border:none;background:#0f6bff;color:white}
+button:hover{background:#3f8dff}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div style="font-size:22px;font-weight:700;">Orcado Fish</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="add-boat.html">Add Boat</a>
+    <a href="view-boats.html">View Boats</a>
+  </div>
+</nav>
+
+<div class="container">
+
+<h2>Boat Records</h2>
+
+<input id="search" placeholder="Search..." onkeyup="render()">
+<select id="filter" onchange="render()">
+  <option value="All">All</option>
+  <option value="Active">Active</option>
+  <option value="Expired">Expired</option>
+</select>
+
+<button onclick="exportExcel()">Export to Excel</button>
+
+<div class="card">
+<table id="boatTable">
+<thead>
+<tr>
+<th>Boat</th>
+<th>Owner</th>
+<th>Location</th>
+<th>Subscription</th>
+</tr>
+</thead>
+<tbody id="rows"></tbody>
+</table>
+
+<div id="pagination"></div>
+</div>
+</div>
+
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script>
+
+<!-- SheetJS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.20.2/xlsx.full.min.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey:"",
+  authDomain:"",
+  projectId:"",
+  storageBucket:"",
+  messagingSenderId:"",
+  appId:""
+};
+
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+let boats=[];
+let page=1;
+const perPage=6;
+
+async function load(){
+  const snap = await db.collection("boats").orderBy("createdAt","desc").get();
+  boats = snap.docs.map(d=>({id:d.id,...d.data()}));
+  render();
+}
+
+function render(){
+
+  let q = search.value.toLowerCase();
+  let f = filter.value;
+
+  let list = boats.filter(b =>
+    (f==="All" || b.subscription===f) &&
+    JSON.stringify(b).toLowerCase().includes(q)
+  );
+
+  const start = (page-1)*perPage;
+  const paginated = list.slice(start,start+perPage);
+
+  rows.innerHTML="";
+
+  paginated.forEach(b=>{
+    rows.innerHTML += `
+    <tr>
+      <td>${b.boatName}</td>
+      <td>${b.ownerName}</td>
+      <td>${b.location}</td>
+      <td>
+        <span class="status ${b.subscription==='Active'?'active':'expired'}">
+          ${b.subscription}
+        </span>
+      </td>
+    </tr>`;
+  });
+
+  let pages=Math.ceil(list.length/perPage);
+  let html="";
+  for(let i=1;i<=pages;i++){
+    html += `<button onclick="page=${i};render()" style="margin:4px;${i===page?'background:#3f8dff':''}">${i}</button>`;
+  }
+  pagination.innerHTML=html;
+}
+
+function exportExcel(){
+  let ws = XLSX.utils.json_to_sheet(boats);
+  let wb = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, "Boats");
+  XLSX.writeFile(wb,"boats.xlsx");
+}
+
+load();
+</script>
+
+</body>
+</html>
